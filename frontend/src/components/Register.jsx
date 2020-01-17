@@ -40,7 +40,7 @@ class RegistrationPage extends Component {
       )
       .then(res => {
         console.log(res.data);
-        localStorage.setItem("jwt", res.data.key);
+        localStorage.setItem("token", res.data.key);
       })
       .catch(err => {
         console.log(err);
