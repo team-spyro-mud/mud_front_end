@@ -16,11 +16,13 @@ class App extends Component {
     super(props);
     this.state = {
       initData: [],
+      roomData: [],
       loggedIn: false
     };
   }
 
   componentDidMount() {
+    // Get player information while making sure they are authorized
     axios
       .get("https://lambda-mud-test.herokuapp.com/api/adv/init", {
         headers: {
@@ -29,7 +31,20 @@ class App extends Component {
       })
       .then(res => {
         this.setState({ initData: res.data, loggedIn: true });
-        console.log(res);
+        // console.log(res);
+      })
+      .catch(err => console.log(err));
+
+    // Get room information
+    axios
+      .get("http://lambda-mud-test.herokuapp.com/api/adv/rooms/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`
+        }
+      })
+      .then(res => {
+        this.setState({ roomData: res.data });
+        console.log(res.data.rooms);
       })
       .catch(err => console.log(err));
   }
@@ -60,6 +75,7 @@ class App extends Component {
           ) : null}
           <h3>{this.state.initData.title}</h3>
           <h4>{this.state.initData.description}</h4>
+          {/* <h5>{this.state.roomData.rooms}</h5> */}
         </div>
       </>
     );
