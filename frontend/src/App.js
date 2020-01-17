@@ -11,6 +11,34 @@ const logoutStyle = {
   backgroundColor: "maroon"
 };
 
+const moveButtonN = {
+  width: "10%",
+  border: "1px solid black",
+  fontSize: "20px",
+  backgroundColor: "yellow"
+};
+
+const moveButtonS = {
+  width: "10%",
+  border: "1px solid black",
+  fontSize: "20px",
+  backgroundColor: "blue"
+};
+
+const moveButtonE = {
+  width: "10%",
+  border: "1px solid black",
+  fontSize: "20px",
+  backgroundColor: "peach"
+};
+
+const moveButtonW = {
+  width: "10%",
+  border: "1px solid black",
+  fontSize: "20px",
+  backgroundColor: "yellow"
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -57,6 +85,28 @@ class App extends Component {
     }, 0);
   };
 
+  moveDirection = move => {
+    let direction;
+    let go = { direction: move };
+    console.log(go);
+    axios
+      .post("https://lambda-mud-test.herokuapp.com/api/adv/move/", go, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`
+        }
+      })
+      .then(res => {
+        console.log(res);
+        window.location.reload();
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 0);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <>
@@ -75,6 +125,18 @@ class App extends Component {
           ) : null}
           <h3>{this.state.initData.title}</h3>
           <h4>{this.state.initData.description}</h4>
+          <button onClick={() => this.moveDirection("n")} style={moveButtonN}>
+            Move North
+          </button>
+          <button onClick={() => this.moveDirection("s")} style={moveButtonS}>
+            Move South
+          </button>
+          <button onClick={() => this.moveDirection("e")} style={moveButtonE}>
+            Move East
+          </button>
+          <button onClick={() => this.moveDirection("w")} style={moveButtonW}>
+            Move W
+          </button>
           {/* <h5>{this.state.roomData.rooms}</h5> */}
         </div>
       </>
