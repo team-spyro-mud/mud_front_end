@@ -1,12 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
+import Register from "./components/Register";
+import Login from "./components/Login";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <h1> Hello! :) </h1>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <Register />
+        {/* <Login /> */}
+      </div>
+    );
+  }
 }
 
 export default App;
