@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+const registerStyle = {
+  width: "10%",
+  border: "1px solid black",
+  fontSize: "20px",
+  backgroundColor: "green"
+};
+
 class RegistrationPage extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +62,7 @@ class RegistrationPage extends Component {
             {/* <label>User Name</label> */}
             <input
               type="text"
-              placeholder="Enter a User Name here"
+              placeholder="Create Username"
               name="username"
               value={this.state.username}
               onChange={this.handleChange}
@@ -65,7 +72,7 @@ class RegistrationPage extends Component {
             {/* <label>password1</label> */}
             <input
               type="password"
-              placeholder="Enter password1 here"
+              placeholder="Create Password"
               name="password1"
               value={this.state.password1}
               onChange={this.handleChange}
@@ -75,7 +82,7 @@ class RegistrationPage extends Component {
             {/* <label>password1</label> */}
             <input
               type="password"
-              placeholder="Retype Password Here"
+              placeholder="Retype Password"
               name="password2"
               value={this.state.password2}
               onChange={this.handleChange}
@@ -83,7 +90,7 @@ class RegistrationPage extends Component {
           </div>
 
           <div>
-            <button>Register</button>
+            <button style={registerStyle}>Register</button>
           </div>
         </form>
       </div>

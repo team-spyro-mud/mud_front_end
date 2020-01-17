@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+const loginStyle = {
+  width: "10%",
+  border: "1px solid black",
+  fontSize: "15px",
+  backgroundColor: "green",
+  marginTop: '5px'
+};
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -19,11 +27,10 @@ class Login extends Component {
       .post("https://lambda-mud-test.herokuapp.com/api/login/", this.state)
       .then(res => {
         console.log(res.data);
-        localStorage.setItem("jwt", res.data.key);
-        // localStorage.setItem("user_id", res.data.user_id);
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 0);
+        localStorage.setItem("token", res.data.key);
+        setTimeout(() => {
+          window.location.reload();
+        }, 0);
       })
       .catch(err => {
         console.log(err);
@@ -51,21 +58,32 @@ class Login extends Component {
       <div className="form-styles">
         <h1> Login </h1>
         <form onSubmit={this.handleSubmit}>
-          <label>User Name:</label>
-          <input
-            type="text"
-            data-test="username"
-            value={this.state.username}
-            onChange={this.handleUserChange}
-          />
-          <label className="password-login">Password:</label>
-          <input
-            type="password"
-            data-test="password"
-            value={this.state.password}
-            onChange={this.handlePassChange}
-          />
-          <button type="submit" value="Log In" data-test="submit">
+          <div>
+            <label>User Name:</label>
+            <input
+              type="text"
+              data-test="username"
+              placeholder="Username"
+              value={this.state.username}
+              onChange={this.handleUserChange}
+            />
+          </div>
+          <div>
+            <label className="password-login">Password:</label>
+            <input
+              type="password"
+              data-test="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handlePassChange}
+            />
+          </div>
+          <button
+            style={loginStyle}
+            type="submit"
+            value="Log In"
+            data-test="submit"
+          >
             {" "}
             Log In{" "}
           </button>
