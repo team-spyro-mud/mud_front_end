@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div>
         <Register />
-        {/* <Login /> */}
+        <Login />
       </div>
     );
   }

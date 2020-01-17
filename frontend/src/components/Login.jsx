@@ -7,16 +7,10 @@ class Login extends Component {
     this.state = {
       username: "",
       password: ""
-      // error: ''
     };
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.dismissError = this.dismissError.bind(this);
-  }
-
-  dismissError() {
-    this.setState({ error: "" });
   }
 
   handleSubmit = event => {
@@ -24,11 +18,12 @@ class Login extends Component {
     axios
       .post("https://lambda-mud-test.herokuapp.com/api/login/", this.state)
       .then(res => {
-        localStorage.setItem("jwt", res.data.token);
-        localStorage.setItem("user_id", res.data.user_id);
-        setTimeout(() => {
-          window.location.reload();
-        }, 0);
+        console.log(res.data);
+        localStorage.setItem("jwt", res.data.key);
+        // localStorage.setItem("user_id", res.data.user_id);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 0);
       })
       .catch(err => {
         console.log(err);
