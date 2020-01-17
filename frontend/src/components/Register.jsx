@@ -33,7 +33,7 @@ class RegistrationPage extends Component {
       )
       .then(res => {
         console.log(res.data);
-        localStorage.setItem("jwt", res.data);
+        localStorage.setItem("jwt", res.data.key);
       })
       .catch(err => {
         console.log(err);
