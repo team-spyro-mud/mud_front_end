@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Move from "./components/Move";
+import DisplayMap from "./components/DisplayMap";
 import "./App.css";
 import axios from "axios";
 
@@ -45,8 +46,8 @@ class App extends Component {
         }
       })
       .then(res => {
-        this.setState({ roomData: res.data });
-        console.log(res.data.rooms);
+        this.setState({ roomData: JSON.parse(res.data.rooms) });
+        // console.log(res.data.rooms);
       })
       .catch(err => console.log(err));
   }
@@ -78,6 +79,7 @@ class App extends Component {
               <h3>{this.state.initData.title}</h3>
               <h4>{this.state.initData.description}</h4>
               <Move />
+              <DisplayMap rooms={this.state.roomData} />
             </>
           ) : null}
         </div>
