@@ -18,6 +18,17 @@ const mapDisplayAsBox = {
   margin: "10px"
 };
 
+const highlightBox = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100px",
+  height: "100px",
+  backgroundColor: "yellow",
+  color: "green",
+  margin: "10px"
+};
+
 class DisplayMap extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +38,19 @@ class DisplayMap extends Component {
     return (
       <div style={worldBox}>
         {this.props.rooms.map(room => {
-          return <div style={mapDisplayAsBox}>{room.fields.title}</div>;
+          return (
+            <>
+              <div
+                style={
+                  this.props.currentRoom == room.fields.title
+                    ? highlightBox
+                    : mapDisplayAsBox
+                }
+              >
+                {room.fields.title}
+              </div>
+            </>
+          );
         })}
       </div>
     );

@@ -19,6 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
       initData: [],
+      currentRoom: "",
       roomData: [],
       loggedIn: false
     };
@@ -33,7 +34,11 @@ class App extends Component {
         }
       })
       .then(res => {
-        this.setState({ initData: res.data, loggedIn: true });
+        this.setState({
+          initData: res.data,
+          currentRoom: res.data.title,
+          loggedIn: true
+        });
         // console.log(res);
       })
       .catch(err => console.log(err));
@@ -79,7 +84,10 @@ class App extends Component {
               <h3>{this.state.initData.title}</h3>
               <h4>{this.state.initData.description}</h4>
               <Move />
-              <DisplayMap rooms={this.state.roomData} />
+              <DisplayMap
+                rooms={this.state.roomData}
+                currentRoom={this.state.currentRoom}
+              />
             </>
           ) : null}
         </div>
