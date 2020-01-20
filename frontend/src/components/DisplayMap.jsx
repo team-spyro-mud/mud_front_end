@@ -41,6 +41,7 @@ class DisplayMap extends Component {
           return (
             <>
               <div
+                key={room.fields.title}
                 style={
                   this.props.currentRoom == room.fields.title
                     ? highlightBox

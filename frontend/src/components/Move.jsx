@@ -31,7 +31,6 @@ const moveButtonW = {
 
 class Move extends Component {
   moveDirection = move => {
-    let direction;
     let go = { direction: move };
     console.log(go);
     axios
@@ -42,7 +41,7 @@ class Move extends Component {
       })
       .then(res => {
         console.log(res);
-        window.location.reload();
+        // window.location.reload();
       })
       .catch(err => {
         console.log(err);
@@ -62,7 +61,7 @@ class Move extends Component {
           Move East
         </button>
         <button onClick={() => this.moveDirection("w")} style={moveButtonW}>
-          Move W
+          Move West
         </button>
       </div>
     );
