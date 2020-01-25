@@ -33,9 +33,10 @@ class RegistrationPage extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log("current state: ", this.state)
     axios
       .post(
-        "https://lambda-mud-test.herokuapp.com/api/registration/",
+        "https://mud-back-end.herokuapp.com/api/registration/",
         this.state
       )
       .then(res => {

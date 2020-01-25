@@ -34,14 +34,14 @@ class Move extends Component {
     let go = { direction: move };
     console.log(go);
     axios
-      .post("https://lambda-mud-test.herokuapp.com/api/adv/move/", go, {
+      .post("https://mud-back-end.herokuapp.com/api/adv/move/", go, {
         headers: {
           Authorization: `Token ${localStorage.getItem("token")}`
         }
       })
       .then(res => {
         console.log(res);
-        // window.location.reload();
+        this.props.updateRoomDesc(res.data)
       })
       .catch(err => {
         console.log(err);

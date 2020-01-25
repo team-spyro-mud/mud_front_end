@@ -28,7 +28,7 @@ class App extends Component {
   componentDidMount() {
     // Get player information while making sure they are authorized
     axios
-      .get("https://lambda-mud-test.herokuapp.com/api/adv/init", {
+      .get("https://mud-back-end.herokuapp.com/api/adv/init", {
         headers: {
           Authorization: `Token ${localStorage.getItem("token")}`
         }
@@ -45,7 +45,7 @@ class App extends Component {
 
     // Get room information
     axios
-      .get("http://lambda-mud-test.herokuapp.com/api/adv/rooms/", {
+      .get("http://mud-back-end.herokuapp.com/api/adv/rooms/", {
         headers: {
           Authorization: `Token ${localStorage.getItem("token")}`
         }
@@ -65,6 +65,12 @@ class App extends Component {
     }, 0);
   };
 
+  updateRoomDesc = (newRoom) => {
+    this.setState({
+      initData: newRoom
+    })
+  }
+
   render() {
     return (
       <>
@@ -80,10 +86,10 @@ class App extends Component {
         <div>
           {this.state.loggedIn ? (
             <>
-              <h1>Weclome {this.state.initData.name}!</h1>
+              <h1>Welcome {this.state.initData.name}!</h1>
               <h3>{this.state.initData.title}</h3>
               <h4>{this.state.initData.description}</h4>
-              <Move />
+              <Move updateRoomDesc={this.updateRoomDesc} />
               <DisplayMap
                 rooms={this.state.roomData}
                 currentRoom={this.state.currentRoom}

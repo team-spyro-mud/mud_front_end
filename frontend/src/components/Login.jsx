@@ -24,7 +24,7 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
     axios
-      .post("https://lambda-mud-test.herokuapp.com/api/login/", this.state)
+      .post("https://mud-back-end.herokuapp.com/api/login/", this.state)
       .then(res => {
         console.log(res.data);
         localStorage.setItem("token", res.data.key);
